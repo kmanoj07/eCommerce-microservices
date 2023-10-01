@@ -16,11 +16,12 @@ import java.util.UUID;
 @Service
 public class OrderService {
     private final OrderServiceRepository orderServiceRepository;
-    private final WebClient webClient;
+//    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
 
-    public OrderService(OrderServiceRepository orderServiceRepository, WebClient webClient){
+    public OrderService(OrderServiceRepository orderServiceRepository, WebClient.Builder webClientBuilder){
             this.orderServiceRepository = orderServiceRepository;
-            this.webClient = webClient;
+            this.webClientBuilder = webClientBuilder;
     }
     public void placeOrder(OrderRequest orderRequest) {
             Order order = new Order();
@@ -42,8 +43,9 @@ public class OrderService {
 //                .retrieve()
 //                .bodyToMono(Boolean.class)
 //                .block();
-        InventoryResponse[] inventoryResponsesArray = webClient.get()
-                .uri("http://localhost:8083/api/inventory",
+        // replace the localhost:8083 hardcoded port number to service name register withe Discovery server
+        InventoryResponse[] inventoryResponsesArray = webClientBuilder.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> uriBuilder.queryParam("skuCode", skuCodeList)
                                 .build())
                 .retrieve()

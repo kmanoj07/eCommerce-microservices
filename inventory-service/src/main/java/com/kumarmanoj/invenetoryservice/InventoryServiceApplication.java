@@ -5,13 +5,15 @@ import com.kumarmanoj.invenetoryservice.repository.InventoryRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class InvenetoryServiceApplication {
+@EnableDiscoveryClient
+public class InventoryServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InvenetoryServiceApplication.class, args);
+		SpringApplication.run(InventoryServiceApplication.class, args);
 	}
 
 	// creating dummy data for inventory-service db
