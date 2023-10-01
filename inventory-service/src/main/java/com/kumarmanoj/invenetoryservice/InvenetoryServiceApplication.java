@@ -28,7 +28,7 @@ public class InvenetoryServiceApplication {
 
 			Inventory inventory2 = new Inventory();
 			inventory2.setSkuCode("sony_camera");
-			inventory2.setQuantity(10);
+			inventory2.setQuantity(0);
 
 			inventoryRepository.save(inventory);
 			inventoryRepository.save(inventory1);

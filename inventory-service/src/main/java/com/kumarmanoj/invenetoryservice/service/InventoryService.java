@@ -23,10 +23,10 @@ public class InventoryService {
         // extension method for spring data JPA
         //return inventoryRepository.findBySkuCode(skuCode).isPresent();
         return inventoryRepository.findBySkuCodeIn(skuCode).stream()
-                .map(inventory -> mapToInventoryResponsey(inventory)).toList();
+                .map(inventory -> mapToInventoryResponse(inventory)).toList();
     }
 
-    public InventoryResponse mapToInventoryResponsey(Inventory inventory) {
+    public InventoryResponse mapToInventoryResponse(Inventory inventory) {
         return InventoryResponse.builder()
                 .skuCode(inventory.getSkuCode())
                 .isInStock(inventory.getQuantity() > 0)
